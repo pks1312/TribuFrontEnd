@@ -1,132 +1,203 @@
-# Tribu Frontend
+# 🎨 Tribu Frontend - React + TypeScript
 
-Frontend de la aplicación web de La Tribu - Salón y Barbería. Desarrollado con React, TypeScript y Vite.
+Interfaz de usuario para la plataforma Tribu, construida con React, TypeScript y Vite.
 
-## Características
+---
 
-- 🎨 Interfaz moderna y responsive
-- 📅 Sistema de reservas de citas
-- 👤 Gestión de perfiles de usuario
-- 🖼️ Galería de trabajos
-- ⭐ Sistema de testimonios
-- 🌙 Modo claro/oscuro
-- 📱 Diseño mobile-first
+## 🚀 Quick Start
 
-## Tecnologías
+### Desarrollo Local
 
-- **React 19** - Framework UI
-- **TypeScript** - Tipado estático
-- **Vite** - Build tool
-- **React Router** - Enrutamiento
-- **Axios** - Cliente HTTP
-- **Recharts** - Gráficos
-
-## Requisitos
-
-- Node.js 18 o superior
-- npm o yarn
-
-## Instalación
-
-1. Clonar el repositorio:
 ```bash
+# Clonar repositorio
 git clone https://github.com/pks1312/TribuFrontEnd.git
 cd TribuFrontEnd
-```
 
-2. Instalar dependencias:
-```bash
+# Instalar dependencias
 npm install
-```
 
-3. Configurar variables de entorno:
-Crea un archivo `.env` basado en `.env.example`:
-```
-VITE_API_URL=http://localhost:8000/api
-```
+# Configurar variables de entorno
+# Crea un archivo .env.local
+echo "VITE_API_URL=http://localhost:8000" > .env.local
 
-4. Ejecutar en desarrollo:
-```bash
+# Iniciar servidor de desarrollo
 npm run dev
 ```
 
-La aplicación estará disponible en `http://localhost:5173`
+La aplicación estará en: `http://localhost:5173`
 
-## Scripts Disponibles
+---
 
-- `npm run dev` - Inicia el servidor de desarrollo
-- `npm run build` - Construye la aplicación para producción
-- `npm run preview` - Previsualiza la build de producción
-- `npm run lint` - Ejecuta el linter
-
-## Estructura del Proyecto
+## 📁 Estructura
 
 ```
-src/
-├── assets/          # Recursos estáticos
-├── components/      # Componentes reutilizables
-│   ├── common/     # Componentes comunes (Button, Input, etc.)
-│   ├── layout/     # Componentes de layout (Header, Footer)
-│   └── testimonials/ # Componentes de testimonios
-├── contexts/        # Contextos de React
-├── hooks/          # Custom hooks
-├── pages/          # Páginas de la aplicación
-│   ├── Admin/      # Panel administrativo
-│   ├── Auth/       # Autenticación
-│   ├── Booking/    # Sistema de reservas
-│   ├── Home/       # Página principal
-│   └── Services/   # Página de servicios
-├── routes/         # Configuración de rutas
-├── services/       # Servicios y API
-│   └── api/       # Cliente API REST
-├── types/          # Definiciones de TypeScript
-└── utils/          # Utilidades y helpers
+frontend/
+├── src/
+│   ├── components/       # Componentes reutilizables
+│   ├── pages/           # Páginas/Vistas
+│   ├── services/        # API clients y configuración
+│   │   └── api/         # Clientes de API
+│   ├── contexts/        # Context API de React
+│   ├── hooks/           # Custom hooks
+│   ├── types/           # TypeScript types
+│   ├── App.tsx          # Componente principal
+│   └── main.tsx         # Punto de entrada
+├── public/              # Archivos estáticos
+├── package.json         # Dependencias
+└── vite.config.ts       # Configuración de Vite
 ```
 
-## Deployment en Vercel
+---
 
-Este proyecto está configurado para desplegarse automáticamente en Vercel.
+## 🌐 Páginas Principales
 
-### Variables de Entorno en Vercel
+```
+/                    # Home
+/services            # Lista de servicios
+/services/:id        # Detalle de servicio
+/professionals       # Profesionales
+/booking             # Crear reserva
+/my-bookings         # Mis reservas (auth)
+/testimonials        # Testimonios
+/gallery             # Galería
+/login               # Login
+/register            # Registro
+/admin               # Panel admin (auth)
+```
 
-Configura las siguientes variables de entorno en tu proyecto de Vercel:
+---
 
-- `VITE_API_URL` - URL del backend Django en Render
+## 🔌 Integración con Backend
 
-### Deploy Manual
+El frontend se comunica con el backend Django REST API mediante Axios.
+
+### Configuración
+
+Archivo: `src/services/api/config.ts`
+
+```typescript
+const API_URL = import.meta.env.VITE_API_URL || 'https://tunombre.pythonanywhere.com';
+```
+
+### Variables de Entorno
 
 ```bash
-npm run build
-vercel --prod
+# .env.local (desarrollo)
+VITE_API_URL=http://localhost:8000
+
+# Vercel (producción)
+VITE_API_URL=https://tunombre.pythonanywhere.com
 ```
 
-## Conexión con el Backend
+---
 
-El frontend se conecta al backend Django a través de una API REST. 
+## 🛠️ Scripts Disponibles
 
-URL del backend: Se configura mediante la variable de entorno `VITE_API_URL`
+```bash
+# Desarrollo
+npm run dev          # Servidor de desarrollo (puerto 5173)
 
-## Credenciales de Prueba
+# Build
+npm run build        # Compilar para producción
 
-Para el panel administrativo:
-- Email: `admin@tribu.com`
-- Contraseña: `admin123`
+# Preview
+npm run preview      # Preview del build de producción
 
-**Nota:** El sistema de autenticación actual es temporal. Se recomienda implementar autenticación completa con el backend Django para producción.
+# Linting
+npm run lint         # Ejecutar ESLint
+```
 
-## Contribuir
+---
 
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+## 🚀 Deployment en Vercel
 
-## Licencia
+Ver guía completa: [`VERCEL_DEPLOYMENT.md`](VERCEL_DEPLOYMENT.md)
 
-Este proyecto es privado y propiedad de La Tribu.
+**Resumen rápido:**
 
-## Contacto
+1. Conectar repositorio a Vercel
+2. Configurar build settings (Vite preset)
+3. Agregar variable `VITE_API_URL`
+4. Deploy automático en cada push
 
-Para consultas o soporte, contactar a través del repositorio de GitHub.
+---
 
+## 🛠️ Tecnologías
+
+- **React** 19
+- **TypeScript** 5.6
+- **Vite** 7.2
+- **React Router** 7.9
+- **Axios** (para API calls)
+- **Recharts** (gráficos)
+
+---
+
+## 🔐 Autenticación
+
+El frontend usa **Session Authentication** con el backend Django.
+
+Las sesiones se manejan mediante cookies HTTP-only.
+
+---
+
+## 🎨 Estilo y UI
+
+- CSS Modules / CSS vanilla
+- Responsive design
+- Componentes modulares
+
+---
+
+## 📝 Convenciones de Código
+
+### Nombres de Archivos
+- Componentes: `PascalCase.tsx`
+- Hooks: `useCamelCase.ts`
+- Utilities: `camelCase.ts`
+- Types: `types.ts` o `interfaces.ts`
+
+### Imports
+```typescript
+// External libraries
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+// Internal modules
+import { API_URL } from '@/services/api/config';
+import { Button } from '@/components/Button';
+
+// Types
+import type { Service } from '@/types';
+
+// Styles
+import styles from './Component.module.css';
+```
+
+---
+
+## 🐛 Debugging
+
+### Ver logs de la API
+
+Abre la consola del navegador (F12) → Network tab
+
+### Verificar variables de entorno
+
+```typescript
+console.log(import.meta.env.VITE_API_URL);
+```
+
+---
+
+## 🔗 Enlaces
+
+- **Repositorio:** https://github.com/pks1312/TribuFrontEnd
+- **Backend:** https://github.com/pks1312/TribuBackEnd
+- **Producción:** https://tribu-theta.vercel.app
+
+---
+
+## 📄 Licencia
+
+Privado
